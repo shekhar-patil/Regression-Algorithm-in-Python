@@ -8,11 +8,16 @@ from sklearn.linear_model import LinearRegression
 
 
 df = pd.read_csv("crime.csv")
-X = df.iloc[:,:-1].values
-y = df.iloc[:,7].values
+
+X = df[['Year']]
+y = df[['Cruelty by Husband or his Relatives']]
+
+
+
+
 X_train,X_test,y_train,y_test = cross_validation.train_test_split(X,y,test_size=0.2)
 
-regressor = LinearRegression().0
+regressor = LinearRegression()
 
 regressor.fit(X_train,y_train)
 
@@ -21,6 +26,10 @@ print "Your Test Set is:- \n",X_test
 accuracy = regressor.score(X_test,y_test)
 print "\nYour Prediction has the accuracy of-",accuracy*100,"%"
 
+X_test1 = [[2015]]
 
 y_prediction = regressor.predict(X_test)
+print "\nPredicted Total Crime for above given years is:-\n",y_prediction
+
+y_prediction = regressor.predict(X_test1)
 print "\nPredicted Total Crime for above given years is:-\n",y_prediction
